@@ -1,0 +1,10 @@
+C:\Users\gunny\source\repos\Spotlight\bin\Debug\Spotlight.exe.config
+C:\Users\gunny\source\repos\Spotlight\bin\Debug\Spotlight.exe
+C:\Users\gunny\source\repos\Spotlight\bin\Debug\Spotlight.pdb
+C:\Users\gunny\source\repos\Spotlight\obj\Debug\Spotlight.csprojAssemblyReference.cache
+C:\Users\gunny\source\repos\Spotlight\obj\Debug\Spotlight.Form1.resources
+C:\Users\gunny\source\repos\Spotlight\obj\Debug\Spotlight.Properties.Resources.resources
+C:\Users\gunny\source\repos\Spotlight\obj\Debug\Spotlight.csproj.GenerateResource.cache
+C:\Users\gunny\source\repos\Spotlight\obj\Debug\Spotlight.csproj.CoreCompileInputs.cache
+C:\Users\gunny\source\repos\Spotlight\obj\Debug\Spotlight.exe
+C:\Users\gunny\source\repos\Spotlight\obj\Debug\Spotlight.pdb
