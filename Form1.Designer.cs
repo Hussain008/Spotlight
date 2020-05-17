@@ -54,6 +54,7 @@
             this.comboBox1.Size = new System.Drawing.Size(800, 63);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
+            this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
             // Form1
             // 
@@ -62,7 +63,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1019, 519);
             this.Controls.Add(this.comboBox1);
-            this.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(500, 500);
             this.Name = "Form1";
