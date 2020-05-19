@@ -48,15 +48,15 @@ namespace Spotlight
             //Initial text in the search    
             comboBox1.Text = "Search";
 
-            foreach (string file in GetFiles("C:\\Users\\gunny\\Downloads"))
-            {
-                Debug.WriteLine(file);
-            }
+            //foreach (string file in GetFiles("C:\\Users\\gunny\\Downloads"))
+            //{
+            //    Debug.WriteLine(file);
+            //}
 
-            foreach (string file in GetFiles("C:\\Users\\gunny\\Documents"))
-            {
-                Debug.WriteLine(file);
-            }
+            //foreach (string file in GetFiles("C:\\Users\\gunny\\Documents"))
+            //{
+            //    Debug.WriteLine(file);
+            //}
 
 
 
