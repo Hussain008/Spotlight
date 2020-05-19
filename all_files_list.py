@@ -17,7 +17,7 @@ def walking(path):
             if(os.path.isdir(file)):
                 walking(file+'\*')
 
-            with open("allFilesCopy.txt", "a", encoding="utf-8") as filewrite:
+            with open("C:\\Users\\gunny\\source\\repos\\Spotlight\\allFiles.txt", "a", encoding="utf-8") as filewrite:
                 filewrite.write(file+" "+str(count)+"\n")
                 count+=1
 
