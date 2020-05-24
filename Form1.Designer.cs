@@ -28,33 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.searchBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // searchBox
             // 
-            this.comboBox1.AllowDrop = true;
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.comboBox1.DropDownHeight = 500;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.White;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.IntegralHeight = false;
-            this.comboBox1.Items.AddRange(new object[] {
-            "hussain",
-            "zainab",
-            "fatema",
-            "ali"});
-            this.comboBox1.Location = new System.Drawing.Point(207, 21);
-            this.comboBox1.MaximumSize = new System.Drawing.Size(1080, 0);
-            this.comboBox1.MaxLength = 100;
-            this.comboBox1.MinimumSize = new System.Drawing.Size(100, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(800, 63);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
-            this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
+            this.searchBox.AllowDrop = true;
+            this.searchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.searchBox.DropDownHeight = 500;
+            this.searchBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchBox.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.ForeColor = System.Drawing.Color.White;
+            this.searchBox.FormattingEnabled = true;
+            this.searchBox.IntegralHeight = false;
+            this.searchBox.Location = new System.Drawing.Point(207, 21);
+            this.searchBox.MaximumSize = new System.Drawing.Size(1080, 0);
+            this.searchBox.MaxLength = 100;
+            this.searchBox.MinimumSize = new System.Drawing.Size(100, 0);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(800, 63);
+            this.searchBox.TabIndex = 0;
+            this.searchBox.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
+            this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
             // Form1
             // 
@@ -62,7 +57,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1019, 519);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.searchBox);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(500, 500);
@@ -74,7 +69,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox searchBox;
     }
 }
 

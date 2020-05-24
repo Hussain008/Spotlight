@@ -27,7 +27,7 @@ def write_to_file():
 
     for file in sorted_by_use : 
         with open("C:\\Users\\gunny\\source\\repos\\Spotlight\\allFilesCopy.txt", "a", encoding="utf-8") as filewrite:
-                    filewrite.write(file+" "+str(count)+"\n")
+                    filewrite.write(file+"<"+str(count)+"\n")
                     count+=1
 
 Apps = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\*'

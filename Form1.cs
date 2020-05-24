@@ -18,13 +18,7 @@ using System.Collections;
 
 /*
      TO DO LIST => 
-     REFER THIS GUY -> https://www.youtube.com/watch?v=xrYTjaK5QVM 
-     DECIDE ON WHICH FOLDERS TO CRAWL -->done
-     DECIDE ON WHETHER TO HAVE A SEPARATE PROGRAM TO CRAWL FOR US --> done
-     LET THAT PROGRAM CREATE A TRIE , WHERE EACH PREFIX IN THE TRIE WILL CONTAIN TOP 10 SUGGESTIONS BASED ON SOME RANK
-     THEN STORE THIS TRIE , MAYBE SERIALISE IT AND DESRIALISE IT INTO A PREFIX HASHTABLE , WHERE FOR EVERY PREFIX YOU HAVE A LIST OF SUGGESTIONS
-     USE THIS PREFIX MAP FOR EVERY QUERY IN THE SEARCH TO GET TOP 5 SUGGESTIONS ! 
-     USE THIS TO OPEN THE SELECTED FILE FINALLY https://stackoverflow.com/a/10174230
+     
 */
 
 
@@ -47,21 +41,12 @@ namespace Spotlight
 
 
             //giving the style and initial size of the drop down
-            comboBox1.DropDownStyle = ComboBoxStyle.Simple;
-            comboBox1.Size = new Size(720, 100);
+            searchBox.DropDownStyle = ComboBoxStyle.Simple;
+            searchBox.Size = new Size(720, 100);
 
             //Initial text in the search    
-            comboBox1.Text = "Search";
+            searchBox.Text = "Search";
 
-            //foreach (string file in GetFiles("C:\\Users\\gunny\\Downloads"))
-            //{
-            //    Debug.WriteLine(file);
-            //}
-
-            //foreach (string file in GetFiles("C:\\Users\\gunny\\Documents"))
-            //{
-            //    Debug.WriteLine(file);
-            //}
 
 
             
@@ -72,25 +57,25 @@ namespace Spotlight
         {
 
 
-            string query = comboBox1.Text;
+            string query = searchBox.Text;
 
-            this.comboBox1.Items.Clear();
+            this.searchBox.Items.Clear();
 
 
+            //populating the drop down
+            if (trie.map.ContainsKey(query) == true)
+            {
+                list = trie.map[query];
 
-            if (!trie.map.ContainsKey(query) == true)
-                return ;
-
-             list = trie.map[query];
-
-            for (int i = 0; i<50 && i<list.Count  ; i++)
-                comboBox1.Items.Add(list[i].name);
+                for (int i = 0; i < 50 && i < list.Count; i++)
+                    searchBox.Items.Add(list[i].name);
+            }
 
             //This is for putting the cursor to the end of the previous typed string
-            comboBox1.Select(comboBox1.Text.Length, 0);
+            searchBox.Select(searchBox.Text.Length, 0);
 
             //setting the dropdown size
-            comboBox1.Size = new Size(720, 300);
+            searchBox.Size = new Size(720, 300);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,15 +87,43 @@ namespace Spotlight
         {
             //escaping the application when ESC is pressed 
             if (e.KeyCode == Keys.Escape)
-                Application.Exit();
-            if(e.KeyCode == Keys.Enter)
             {
-                if (comboBox1.SelectedIndex == -1)
-                    return;
-                string selectedFile = list[comboBox1.SelectedIndex].location;
-                Process.Start(@""+selectedFile);
-                //Process.Start(@selectedFile);
+                this.WindowState = FormWindowState.Minimized;
+
+                this.Visible = false;
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                if (searchBox.SelectedIndex == -1)
+                    return;
+                string selectedFile = list[searchBox.SelectedIndex].location;
+                Process.Start(@"" + selectedFile);
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == NativeMethods.WM_SHOWME)
+            {
+                this.Visible = true;
+                ShowMe();
+            }
+            base.WndProc(ref m);
+        }
+        private void ShowMe()
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+            
+            // get our current "TopMost" value (ours will always be false though)
+            bool top = TopMost;
+            // make our form jump to the top of everything
+            TopMost = true;
+            // set it back to whatever it was
+            TopMost = top;
         }
 
 
@@ -161,19 +174,21 @@ namespace Spotlight
 
             foreach (string line in lines)
             {
-                char[] spearator = { ' ' };
+                char[] spearator = { '<' };
                 char[] sep2 = { '\\' };
+                char[] sep3 = { ' ' };
 
                 String[] strlist = line.Split(spearator);
-                String location = "";
+                String location = strlist[0];
 
-                for (int i = 0; i < strlist.Length - 1; i++)
-                    location += strlist[i];
+                //for (int i = 0; i < strlist.Length - 1; i++)
+                //    location += strlist[i];
 
                 String[] tmp = location.Split(sep2);
+
                 string name = tmp[tmp.Length - 1];
 
-                FileObj newFile = new FileObj(name.ToLower(), location, Convert.ToInt32(strlist[strlist.Length - 1]));
+                FileObj newFile = new FileObj(name.ToLower(), location, Convert.ToInt32(strlist[1]));
 
                 trie.Insert(trie.root, newFile, 0);
 
