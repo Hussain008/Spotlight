@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
+
 
 
 
@@ -19,7 +21,7 @@ using System.Windows.Forms;
      REFER THIS GUY -> https://www.youtube.com/watch?v=xrYTjaK5QVM 
      DECIDE ON WHICH FOLDERS TO CRAWL -->done
      DECIDE ON WHETHER TO HAVE A SEPARATE PROGRAM TO CRAWL FOR US --> done
-     LET THAT PROGRAM CREATE A TRIE , WHERE EACH PREFIX IN THE TRIE WILL CONTAIN TOP 5 SUGGESTIONS BASED ON SOME RANK
+     LET THAT PROGRAM CREATE A TRIE , WHERE EACH PREFIX IN THE TRIE WILL CONTAIN TOP 10 SUGGESTIONS BASED ON SOME RANK
      THEN STORE THIS TRIE , MAYBE SERIALISE IT AND DESRIALISE IT INTO A PREFIX HASHTABLE , WHERE FOR EVERY PREFIX YOU HAVE A LIST OF SUGGESTIONS
      USE THIS PREFIX MAP FOR EVERY QUERY IN THE SEARCH TO GET TOP 5 SUGGESTIONS ! 
      USE THIS TO OPEN THE SELECTED FILE FINALLY https://stackoverflow.com/a/10174230
@@ -32,8 +34,11 @@ namespace Spotlight
 {
     public partial class Form1 : Form
     {
+        Trie trie;
+        List<FileObj> list;
         public Form1()
         {
+            BuildTrie();
             InitializeComponent();
             // to set the background transparent 
             this.BackColor = Color.Blue;
@@ -59,7 +64,7 @@ namespace Spotlight
             //}
 
 
-
+            
 
         }
 
@@ -67,11 +72,19 @@ namespace Spotlight
         {
 
 
+            string query = comboBox1.Text;
 
             this.comboBox1.Items.Clear();
 
-            for (int i = 0; i < 6; i++)
-                comboBox1.Items.Add("HEllo");
+
+
+            if (!trie.map.ContainsKey(query) == true)
+                return ;
+
+             list = trie.map[query];
+
+            for (int i = 0; i<50 && i<list.Count  ; i++)
+                comboBox1.Items.Add(list[i].name);
 
             //This is for putting the cursor to the end of the previous typed string
             comboBox1.Select(comboBox1.Text.Length, 0);
@@ -82,7 +95,7 @@ namespace Spotlight
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void comboBox1_KeyDown(object sender, KeyEventArgs e)
@@ -90,6 +103,14 @@ namespace Spotlight
             //escaping the application when ESC is pressed 
             if (e.KeyCode == Keys.Escape)
                 Application.Exit();
+            if(e.KeyCode == Keys.Enter)
+            {
+                if (comboBox1.SelectedIndex == -1)
+                    return;
+                string selectedFile = list[comboBox1.SelectedIndex].location;
+                Process.Start(@""+selectedFile);
+                //Process.Start(@selectedFile);
+            }
         }
 
 
@@ -130,6 +151,44 @@ namespace Spotlight
             }
 
         }
+
+        void BuildTrie()
+        {
+             trie = new Trie(new TrieNode('H'));
+
+            string[] lines = File.ReadAllLines(@"C:\\Users\\gunny\\source\\repos\\Spotlight\\allFilesCopy.txt", Encoding.UTF8);
+
+
+            foreach (string line in lines)
+            {
+                char[] spearator = { ' ' };
+                char[] sep2 = { '\\' };
+
+                String[] strlist = line.Split(spearator);
+                String location = "";
+
+                for (int i = 0; i < strlist.Length - 1; i++)
+                    location += strlist[i];
+
+                String[] tmp = location.Split(sep2);
+                string name = tmp[tmp.Length - 1];
+
+                FileObj newFile = new FileObj(name.ToLower(), location, Convert.ToInt32(strlist[strlist.Length - 1]));
+
+                trie.Insert(trie.root, newFile, 0);
+
+            }
+            Debug.WriteLine("Trie built");
+            trie.Update(trie.root);
+
+            trie.Dfs(trie.root, "", 0);
+            Debug.WriteLine("DFS done");
+
+            Debug.WriteLine(trie.map.Count);
+
+
+        }
+
     }
 
 }

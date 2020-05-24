@@ -12,13 +12,13 @@ namespace Spotlight
     {
 
         public char character;
-        public ArrayList files;
+        public List<FileObj> files;
         public Dictionary<char, TrieNode> children;
 
         public TrieNode(char c)
         {
             character = c;
-            files = new ArrayList();
+            files = new List<FileObj>();
             children = new Dictionary<char, TrieNode>();
         }
     }
