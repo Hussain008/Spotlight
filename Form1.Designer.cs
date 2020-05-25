@@ -34,14 +34,14 @@
             // searchBox
             // 
             this.searchBox.AllowDrop = true;
-            this.searchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.searchBox.BackColor = System.Drawing.Color.Black;
             this.searchBox.DropDownHeight = 500;
-            this.searchBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.searchBox.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBox.ForeColor = System.Drawing.Color.White;
+            this.searchBox.ForeColor = System.Drawing.SystemColors.Control;
             this.searchBox.FormattingEnabled = true;
             this.searchBox.IntegralHeight = false;
-            this.searchBox.Location = new System.Drawing.Point(207, 21);
+            this.searchBox.Location = new System.Drawing.Point(86, 26);
             this.searchBox.MaximumSize = new System.Drawing.Size(1080, 0);
             this.searchBox.MaxLength = 100;
             this.searchBox.MinimumSize = new System.Drawing.Size(100, 0);
@@ -50,6 +50,7 @@
             this.searchBox.TabIndex = 0;
             this.searchBox.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
             this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
+            this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchBox_KeyUp);
             // 
             // Form1
             // 

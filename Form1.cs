@@ -17,8 +17,7 @@ using System.Collections;
 
 
 /*
-     TO DO LIST => 
-     
+     TO DO LIST =>  make the python file run in the background every 30 mins and map getting updated.
 */
 
 
@@ -34,6 +33,7 @@ namespace Spotlight
         {
             BuildTrie();
             InitializeComponent();
+
             // to set the background transparent 
             this.BackColor = Color.Blue;
             this.TransparencyKey = Color.Blue;
@@ -47,6 +47,8 @@ namespace Spotlight
             //Initial text in the search    
             searchBox.Text = "Search";
 
+            
+            
 
 
             
@@ -83,23 +85,11 @@ namespace Spotlight
             
         }
 
+
         private void comboBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            //escaping the application when ESC is pressed 
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.WindowState = FormWindowState.Minimized;
-
-                this.Visible = false;
-            }
-            else if (e.KeyCode == Keys.Enter)
-            {
-                if (searchBox.SelectedIndex == -1)
-                    return;
-                string selectedFile = list[searchBox.SelectedIndex].location;
-                Process.Start(@"" + selectedFile);
-                this.WindowState = FormWindowState.Minimized;
-            }
+            
+            
         }
 
         protected override void WndProc(ref Message m)
@@ -127,43 +117,7 @@ namespace Spotlight
         }
 
 
-        static IEnumerable<string> GetFiles(string path)
-        {
-            Queue<string> queue = new Queue<string>();
-            queue.Enqueue(path);
-            while (queue.Count > 0)
-            {
-                path = queue.Dequeue();
-                try
-                {
-                    foreach (string subDir in Directory.GetDirectories(path))
-                    {
-                        queue.Enqueue(subDir);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
-                string[] files = null;
-                try
-                {
-                    files = Directory.GetFiles(path);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
-                if (files != null)
-                {
-                    for (int i = 0; i < files.Length; i++)
-                    {
-                        yield return files[i];
-                    }
-                }
-            }
 
-        }
 
         void BuildTrie()
         {
@@ -180,9 +134,6 @@ namespace Spotlight
 
                 String[] strlist = line.Split(spearator);
                 String location = strlist[0];
-
-                //for (int i = 0; i < strlist.Length - 1; i++)
-                //    location += strlist[i];
 
                 String[] tmp = location.Split(sep2);
 
@@ -204,6 +155,81 @@ namespace Spotlight
 
         }
 
+        private void searchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            //escaping the application when ESC is pressed 
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.WindowState = FormWindowState.Minimized;
+
+                this.Visible = false;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                if (searchBox.SelectedIndex == -1)
+                    return;
+
+                string selectedFile = list[searchBox.SelectedIndex].location;
+                Process.Start(@selectedFile);
+                this.WindowState = FormWindowState.Minimized;
+                this.Visible = false;
+            }
+        }
+
+
+        private void comboBoxDb_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var combo = sender as ComboBox;
+
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                e.Graphics.FillRectangle(new SolidBrush(Color.Pink), e.Bounds);
+            }
+            else
+            {
+                e.Graphics.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+            }
+
+            e.Graphics.DrawString(combo.Items[e.Index].ToString(),
+                                          e.Font,
+                                          new SolidBrush(Color.Green),
+                                          new Point(e.Bounds.X, e.Bounds.Y));
+        }
+
+
     }
+
+    //class AdvancedComboBox : ComboBox
+    //{
+    //    new public System.Windows.Forms.DrawMode DrawMode { get; set; }
+    //    public Color HighlightColor { get; set; }
+
+    //    public AdvancedComboBox()
+    //    {
+    //        base.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+    //        this.HighlightColor = Color.Gray;
+    //        this.DrawItem += new DrawItemEventHandler(AdvancedComboBox_DrawItem);
+    //    }
+
+    //    void AdvancedComboBox_DrawItem(object sender, DrawItemEventArgs e)
+    //    {
+    //        if (e.Index < 0)
+    //            return;
+
+    //        ComboBox combo = sender as ComboBox;
+    //        if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+    //            e.Graphics.FillRectangle(new SolidBrush(HighlightColor),
+    //                                     e.Bounds);
+    //        else
+    //            e.Graphics.FillRectangle(new SolidBrush(combo.BackColor),
+    //                                     e.Bounds);
+
+    //        e.Graphics.DrawString(combo.Items[e.Index].ToString(), e.Font,
+    //                              new SolidBrush(combo.ForeColor),
+    //                              new Point(e.Bounds.X, e.Bounds.Y));
+
+    //        e.DrawFocusRectangle();
+    //    }
+    //}
 
 }
