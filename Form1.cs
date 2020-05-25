@@ -179,57 +179,43 @@ namespace Spotlight
 
         private void comboBoxDb_DrawItem(object sender, DrawItemEventArgs e)
         {
+            //var combo = sender as ComboBox;
+
+            //if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            //{
+            //    e.Graphics.FillRectangle(new SolidBrush(Color.Pink), e.Bounds);
+            //}
+            //else
+            //{
+            //    e.Graphics.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+            //}
+
+            //e.Graphics.DrawString(combo.Items[e.Index].ToString(),
+            //                              e.Font,
+            //                              new SolidBrush(Color.Green),
+            //                              new Point(e.Bounds.X, e.Bounds.Y));
+        }
+
+        private void searchBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
             var combo = sender as ComboBox;
 
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-                e.Graphics.FillRectangle(new SolidBrush(Color.Pink), e.Bounds);
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(9, 4, 145)), e.Bounds);
             }
             else
             {
-                e.Graphics.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                e.Graphics.FillRectangle(new SolidBrush(Color.Black), e.Bounds);
             }
 
             e.Graphics.DrawString(combo.Items[e.Index].ToString(),
                                           e.Font,
-                                          new SolidBrush(Color.Green),
+                                          new SolidBrush(Color.White),
                                           new Point(e.Bounds.X, e.Bounds.Y));
         }
-
-
     }
 
-    //class AdvancedComboBox : ComboBox
-    //{
-    //    new public System.Windows.Forms.DrawMode DrawMode { get; set; }
-    //    public Color HighlightColor { get; set; }
-
-    //    public AdvancedComboBox()
-    //    {
-    //        base.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-    //        this.HighlightColor = Color.Gray;
-    //        this.DrawItem += new DrawItemEventHandler(AdvancedComboBox_DrawItem);
-    //    }
-
-    //    void AdvancedComboBox_DrawItem(object sender, DrawItemEventArgs e)
-    //    {
-    //        if (e.Index < 0)
-    //            return;
-
-    //        ComboBox combo = sender as ComboBox;
-    //        if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-    //            e.Graphics.FillRectangle(new SolidBrush(HighlightColor),
-    //                                     e.Bounds);
-    //        else
-    //            e.Graphics.FillRectangle(new SolidBrush(combo.BackColor),
-    //                                     e.Bounds);
-
-    //        e.Graphics.DrawString(combo.Items[e.Index].ToString(), e.Font,
-    //                              new SolidBrush(combo.ForeColor),
-    //                              new Point(e.Bounds.X, e.Bounds.Y));
-
-    //        e.DrawFocusRectangle();
-    //    }
-    //}
+    
 
 }

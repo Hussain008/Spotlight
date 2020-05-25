@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.searchBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -35,9 +36,10 @@
             // 
             this.searchBox.AllowDrop = true;
             this.searchBox.BackColor = System.Drawing.Color.Black;
+            this.searchBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.searchBox.DropDownHeight = 500;
             this.searchBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.searchBox.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBox.ForeColor = System.Drawing.SystemColors.Control;
             this.searchBox.FormattingEnabled = true;
             this.searchBox.IntegralHeight = false;
@@ -46,8 +48,9 @@
             this.searchBox.MaxLength = 100;
             this.searchBox.MinimumSize = new System.Drawing.Size(100, 0);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(800, 63);
+            this.searchBox.Size = new System.Drawing.Size(800, 64);
             this.searchBox.TabIndex = 0;
+            this.searchBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.searchBox_DrawItem);
             this.searchBox.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
             this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchBox_KeyUp);
@@ -61,6 +64,7 @@
             this.Controls.Add(this.searchBox);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(500, 500);
             this.Name = "Form1";
             this.Text = "Form1";
