@@ -47,11 +47,6 @@ namespace Spotlight
             //Initial text in the search    
             searchBox.Text = "Search";
 
-            
-            
-
-
-            
 
         }
 
@@ -77,7 +72,7 @@ namespace Spotlight
             searchBox.Select(searchBox.Text.Length, 0);
 
             //setting the dropdown size
-            searchBox.Size = new Size(720, 300);
+            searchBox.Size = new Size(720, 400);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,32 +163,19 @@ namespace Spotlight
             {
                 if (searchBox.SelectedIndex == -1)
                     return;
+                this.WindowState = FormWindowState.Minimized;
+                this.Visible = false;
 
                 string selectedFile = list[searchBox.SelectedIndex].location;
                 Process.Start(@selectedFile);
-                this.WindowState = FormWindowState.Minimized;
-                this.Visible = false;
+                
             }
         }
 
 
         private void comboBoxDb_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //var combo = sender as ComboBox;
-
-            //if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            //{
-            //    e.Graphics.FillRectangle(new SolidBrush(Color.Pink), e.Bounds);
-            //}
-            //else
-            //{
-            //    e.Graphics.FillRectangle(new SolidBrush(Color.White), e.Bounds);
-            //}
-
-            //e.Graphics.DrawString(combo.Items[e.Index].ToString(),
-            //                              e.Font,
-            //                              new SolidBrush(Color.Green),
-            //                              new Point(e.Bounds.X, e.Bounds.Y));
+         
         }
 
         private void searchBox_DrawItem(object sender, DrawItemEventArgs e)
@@ -206,7 +188,7 @@ namespace Spotlight
             }
             else
             {
-                e.Graphics.FillRectangle(new SolidBrush(Color.Black), e.Bounds);
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(11, 10, 31)), e.Bounds);
             }
 
             e.Graphics.DrawString(combo.Items[e.Index].ToString(),
