@@ -17,7 +17,10 @@ using System.Collections;
 
 
 /*
-     TO DO LIST =>  make the python file run in the background every 30 mins and map getting updated.
+     TO DO LIST => 
+      -make the python file run in the background every 30 mins and map getting updated.
+      -make the program multi-threaded for adding into combo-box
+
 */
 
 
