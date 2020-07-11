@@ -1,12 +1,12 @@
-#CODEMONK
+# CODEMONK
 
-##WHY : 
+## WHY : 
 
 - Just before the placement season, while preparing I always had to go to either gfg, leetcode or techiedelight and then look for problems. And there would be a time that I had already solved that question or already done with the topic . So I came up with the idea of automating this process of mine to create some bot that would do the work for me. I previously had worked on an android application to web scrape for me the prices of products from amazon,flipkart and snapdeal but, this time since I wanted to code soutions to these problems , I wanted to make a plugin for a text editor.
 
 - Now for me I had two choices for this. First , Visual Studio code or Sublime Text 3. I used both of them extensively , but for specific tasks. I used VScode primarily when I was working on a project, it had great collection of extensions , terminal, and great support for version control and git etc . But I used sublime text 3 mostly for small programs , especially during coding contests and eventually settled on choosing sublime text since its very light and fast.
 
-##HOW : 
+## HOW : 
 
 - I did some research on sublime text and its plugins and learnt that , its written in python . So I had started looking for appropriate libraries in python for web scraping . I settled on using Selenium and beautiful soup . I eventually thou8 of just making a python webscraping program which then later I could include into the python environment.
 
@@ -24,9 +24,9 @@
 
 
 
-#Spotlight
+# Spotlight
 
-##WHY : 
+## WHY : 
 
 - I sometimes have bad experience with windows searching . It takes exteremely long time to set up first and sometimes , file searching takes too much of time and sometimes , files are not even found . Infact when the first time I saw Mac's searching mechanism - spotlight I was in awe of all its functionality , like it was super powerful , fast and extermely useful . Even with its keystrokes , cmd+space , the way it opened up in the middle of the screen kind of gave this sense of power on your hands to search anything on it , and ofcourse it was all due to it being super fluid !
 
@@ -34,7 +34,7 @@
 
 - I was in a dilemma to choose which framework and language to choose from for this app, I was divided between c++,c# and Js. C++ , because I was already familiar with it the best, but then found out that adding GUI to it wouldnt be as easy and flexible. I had almost decided to use electronJs for devloping the app but , I finally went with c# because its solely made for stuff like this - windows application and thought would provide a good set of options and flexibilty.
 
-##HOW : 
+## HOW : 
 
 I wanted in definition to create a trie first. A modified trie , who's each node would contain a character -> representing the end of curren string from root a string/file name/ prefix , which would have a list of all the files with the current string as its prefix in a sorted fashion by date added . So basically , the trie would contain all prefixes of file present on my laptop where corresponding to each prefix was the list of all files from that prefix to save time. Like we wouldnt need to do a dfs after every walk on the trie for the input string to get all the files with that prefix . 
 
@@ -54,20 +54,20 @@ To further improve the time complexity , I decided that it would be even better 
 
 # TypeGuess
 
-##Why
+## Why
 
 - wanted to make fun experience on boring text based website
 - didnt want to make complex game , but sometihing that can be done on the current context of the page.
 
 
-##How
+## How
 - Javascript only language for chrome plugins
 - used API for meaning of words
 - recursively removed half the words
 - calculates Levenshtein / edit distance 
 
 
-##Problems faced
+## Problems faced
 - Searching for an easy to use , free API .
 - Learning to communicate in chrome's environment. popup js to content js and so forth
 - dissappering text and then making it reappear was not possible , so changed to reloading the page
