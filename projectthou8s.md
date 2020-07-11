@@ -36,9 +36,9 @@
 
 ## HOW : 
 
-I wanted in definition to create a trie first. A modified trie , who's each node would contain a character -> representing the end of curren string from root a string/file name/ prefix , which would have a list of all the files with the current string as its prefix in a sorted fashion by date added . So basically , the trie would contain all prefixes of file present on my laptop where corresponding to each prefix was the list of all files from that prefix to save time. Like we wouldnt need to do a dfs after every walk on the trie for the input string to get all the files with that prefix . 
+- I wanted in definition to create a trie first. A modified trie , who's each node would contain a character -> representing the end of curren string from root a string/file name/ prefix , which would have a list of all the files with the current string as its prefix in a sorted fashion by date added . So basically , the trie would contain all prefixes of file present on my laptop where corresponding to each prefix was the list of all files from that prefix to save time. Like we wouldnt need to do a dfs after every walk on the trie for the input string to get all the files with that prefix . 
 
-To further improve the time complexity , I decided that it would be even better to index all these prefix to a corresponding list. So I ran a complete dfs on trie , after it is built to store for all prefix as key and all the files with that prefix as value in sorted fashion .
+- To further improve the time complexity , I decided that it would be even better to index all these prefix to a corresponding list. So I ran a complete dfs on trie , after it is built to store for all prefix as key and all the files with that prefix as value in sorted fashion .
 
 
 
