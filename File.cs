@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Spotlight
 {
+    //Im not storing just name but a FileObject which would contains its name , its location and its rank based on recently modified activity.
+    //So this is our most atmoic unit of data/file .
     public class FileObj
     {
         public String name
         {
-            get;
+            get; 
             set;
         }
         public String location

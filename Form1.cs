@@ -18,7 +18,6 @@ using System.Collections;
 
 /*
      TO DO LIST => 
-      -make the python file run in the background every 30 mins and map getting updated.
       -make the program multi-threaded for adding into combo-box
 
 */
@@ -119,8 +118,10 @@ namespace Spotlight
 
         void BuildTrie()
         {
+            
              trie = new Trie(new TrieNode('H'));
 
+            //reading the all the file names, location and rank
             string[] lines = File.ReadAllLines(@"C:\\Users\\gunny\\source\\repos\\Spotlight\\allFilesCopy.txt", Encoding.UTF8);
 
 
@@ -181,6 +182,7 @@ namespace Spotlight
          
         }
 
+        //this is for coloring the dropdown
         private void searchBox_DrawItem(object sender, DrawItemEventArgs e)
         {
             var combo = sender as ComboBox;

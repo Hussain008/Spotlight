@@ -11,8 +11,10 @@ namespace Spotlight
 {
     class Trie
     {
+        //root of our Trie
         public TrieNode root;
 
+        //This is our final map/Index .Each key in the map represents a prefix and its value is a list of all files who has this string as its prefix , but the array/list is sorted by rank , which is assigned by recently added file first.
         public Dictionary<string, List<FileObj>> map = new Dictionary<string, List<FileObj>>();
 
         public Trie(TrieNode root)
@@ -20,23 +22,25 @@ namespace Spotlight
             this.root = root;
         }
 
+        //basic trie insertion
         public void Insert(TrieNode node, FileObj file, int index)
         {
             if (index == file.name.Length)
             {
+                //if reached the end of the string , simply add the current file to the list of current node's files 
                 node.files.Add(file);
                 return;
             }
 
             char cur = file.name[index];
 
+            //if child does not exist yet, then create it.
             if (!node.children.ContainsKey(cur))
             {
                 node.children[cur] = new TrieNode(cur);
             }
 
-
-
+            //recur for every chaaracter of the file
             Insert(node.children[cur], file, index + 1);
             
         }
@@ -45,12 +49,12 @@ namespace Spotlight
 
         void DfsHelper(TrieNode node, string s)
         {
-
+            //index the current prefix with the list of files
             map[s] = node.files;
 
+            //recur for all nodes in the trie
             foreach (KeyValuePair<char, TrieNode> child in node.children)
             {
-
                 DfsHelper(child.Value, s + child.Key);
             }
         }
@@ -75,16 +79,21 @@ namespace Spotlight
             }
         }
 
+
+        //this is an interesting function. Basically , a trienode will call upon its children and tell them to return a list of sorted files upto their prefix
+        //Then it will combine and assign it self the sorted list of all files which could be formed from current prefix(formed by the current character as the end point) .
         public List<FileObj> Update(TrieNode node)
         {
 
-
+            //if reached the end 
             if (node.children.Count == 0)
             {
+                //sort in descending order of rank and return the list
                 node.files.Sort((a, b) => b.rank - a.rank );
                 return node.files;
             }
 
+            //combine all the list of its children
             List<FileObj> tmp = new List<FileObj>();
 
             foreach (KeyValuePair<char, TrieNode> child in node.children)
@@ -95,6 +104,7 @@ namespace Spotlight
             node.files.AddRange(tmp);
             node.files.Sort((a, b) => b.rank - a.rank);
 
+            //return the sorted list
             return node.files;
         }
 
@@ -112,7 +122,9 @@ namespace Spotlight
             }
 
         }
+        
 
+        //serliazing and desearlizing the which was eventually given up because it was too time consuming
         public void SerializeNow()
         {
 

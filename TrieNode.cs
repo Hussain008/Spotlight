@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Spotlight
 {
-    //A TrieNode would contain the current character , A list of files and a map of its children .
+    //A TrieNode would contain the current character , A list of files which will contain all the filenames which the current prefix is present in sorted format by its last modified or added date/time
+    //and a map of its children (not using an array to save space)
+
     class TrieNode
     {
 
